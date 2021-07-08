@@ -1,4 +1,4 @@
-# BlenderAddonDeployUtils
+# Utils for deploying Blender addons
 Useful utils for deploying blender addons
 
 ## BlenderAddonAutoIncrement.exe
