@@ -19,6 +19,7 @@ void ShowHelp(void) {
 	std::wcout << L"'path' - path to '__init__.py'" << std::endl;
 	std::wcout << L"'index' - version (0,0,0) index to increment: 0 or 1 or 2 etc.  Default: last" << std::endl;
 	std::wcout << L"'encoding' - file encoding (UTF-8, SYSTEM). Default: UTF-8" << std::endl;
+	std::wcout << L"------------------------------" << std::endl;
 }
 
 int _tmain(int argc, _TCHAR* argv[]) {
@@ -122,7 +123,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	}
 	catch(Exception * E) {
 		ShowHelp();
-		std::wcerr << L"ERROR>" << E->Message.c_str() << std::endl;
+		std::wcerr << L"ERROR> " << E->Message.c_str() << std::endl;
 
 		return -1;
 	}
