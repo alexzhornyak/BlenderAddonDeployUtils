@@ -69,10 +69,12 @@ int _tmain(int argc, _TCHAR* argv[]) {
 						if (!iStart || !iEnd)
 							throw Exception("Wrong version format! Requires: (0, 0, 0)");
 
+						const UnicodeString sWasVersion = AFileListPtr->Strings[i].SubString(iStart + 1, iEnd - iStart - 1);
+
 						std::unique_ptr<TStringList>AVersionListPtr(new TStringList);
 						AVersionListPtr->StrictDelimiter = true;
 						AVersionListPtr->Delimiter = L',';
-						AVersionListPtr->DelimitedText = AFileListPtr->Strings[i].SubString(iStart + 1, iEnd - iStart - 1);
+						AVersionListPtr->DelimitedText = sWasVersion;
 
 						if (AVersionListPtr->Count == 0)
 							throw Exception("Requires at least major version number!");
@@ -107,7 +109,10 @@ int _tmain(int argc, _TCHAR* argv[]) {
 							throw Exception(UnicodeString().sprintf(L"Can not convert version:[%d] number:[%s] to integer!", //
 								iIndex, AVersionListPtr->Strings[iIndex].c_str()));
 
-						AFileListPtr->Strings[i] = AFileListPtr->Strings[i].SubString(1, iStart) + AVersionListPtr->CommaText + "),";
+						AFileListPtr->Strings[i] = AFileListPtr->Strings[i].SubString(1, iStart) + AVersionListPtr->DelimitedText + "),";
+
+						std::wcout << L"Success: Version (" << sWasVersion.c_str() << L") -> (" << AVersionListPtr->DelimitedText.c_str()
+							<< L")";
 					}
 					catch(Exception * E) {
 						throw Exception(E->Message + " Full version line:" + sCurrentLine);

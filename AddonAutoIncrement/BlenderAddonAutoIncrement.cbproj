@@ -57,15 +57,15 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="main.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<None Include="..\CommonInclude\MCommandLine.hpp">
-				<BuildOrder>1</BuildOrder>
-			</None>
 			<ResFiles Include="BlenderAddonAutoIncrement.res">
 				<BuildOrder>2</BuildOrder>
 			</ResFiles>
+			<None Include="..\CommonInclude\MCommandLine.hpp">
+				<BuildOrder>1</BuildOrder>
+			</None>
+			<CppCompile Include="main.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -90,7 +90,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">3</VersionInfo>
+						<VersionInfo Name="Build">7</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -102,7 +102,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription">Blender Addon Auto Increment by Alex Zhornyak</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.3</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.7</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright">Alex Zhornyak © 2021</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>

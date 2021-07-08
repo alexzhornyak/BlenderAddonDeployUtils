@@ -36,3 +36,5 @@ __history
 Debug
 Release
 *.local
+Win32
+Win64
