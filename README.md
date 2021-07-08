@@ -76,6 +76,9 @@ Expected: after hit build command `Shift+Ctrl+B`:
 ### Actions:
 - put **BlenderAddonAutoIncrement.exe**, **BlenderAddonZip.exe** to any system path location or use full path to them
 - create **tasks.json** in **.vscode** folder
+
+![image](https://user-images.githubusercontent.com/18611095/124961272-ebd5c800-e025-11eb-9733-fa9dc8771952.png)
+
 ```typescript
 {
     "version": "2.0.0",
