@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# RAD Studio
+__history
+Debug
+Release
+*.local
