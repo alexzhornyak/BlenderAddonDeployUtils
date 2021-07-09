@@ -44,6 +44,7 @@ bl_info = {
 Utility for deploying addon source as a valid Blender addon zip package
 ### Program Actions:
 * Copies addon src folder to temporary directory, ignoring python cache files etc.
+> WARNING!!! Copy algorithm is based on [robocopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) mirror folder command. Be sure that you've filled target directory correctly!
 * Packs temporary addon folder as Blender addon zip package
 * Gives version number name prefix
 ### Command line arguments:
@@ -52,7 +53,7 @@ Utility for deploying addon source as a valid Blender addon zip package
 - **-tempDir** - temporary directory for creating zip content. Default: User Temp Dir
 - **-targetZipDir** - path to output zip dir
 - **-targetZipName** - addon zip literal name or variable:  AUTO_GENERATE (Default)
-- **-copyParams** - params for using in robocopy. Default:  `/MIR /XD .git .svn __pycache* /XF *.log *.md /R:3 /W:3`
+- **-copyParams** - params for using in [robocopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy). Default:  `/MIR /XD .git .svn __pycache* /XF *.log *.md /R:3 /W:3`
 ### Examples:
 #### 1. Default (use addon version in naming and addon folder name matches addon name)
 * Command:
@@ -67,6 +68,15 @@ BlenderAddonZip.exe -addonDir C:\blender\blender-addons\magic_uv -targetZipDir c
 BlenderAddonZip.exe -addonDir C:\GitHub\MyAddon\Src -addonName MyAddon -targetZipDir C:\GitHub\MyAddon\Build
 ```
 * Result:
+> C:\GitHub\MyAddon\Build\MyAddon_1_0_0.zip
+#### 3. Exclude custom files and folders
+> WARNING! Check target folder because it is based on [robocopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) mirror function
+* Command:
+```posh
+BlenderAddonZip.exe -addonDir C:\GitHub\MyAddon\Src -copyParams "/MIR /XD .git .svn __pycache* ico /XF *.log *.md *.dll /R:3 /W:3" -targetZipDir C:\GitHub\MyAddon\Build
+```
+* Result:
+Folders: `.git`, `.svn`, `__pycache*`, `ico` and files `*.log`, `*.md`, `*.dll` are excluded
 > C:\GitHub\MyAddon\Build\MyAddon_1_0_0.zip
 
 ## Configure in VSCode as POST-BUILD task
