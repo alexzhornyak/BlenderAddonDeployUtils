@@ -54,6 +54,7 @@ Utility for deploying addon source as a valid Blender addon zip package
 - **-targetZipDir** - path to output zip dir
 - **-targetZipName** - addon zip literal name or variable:  AUTO_GENERATE (Default)
 - **-copyParams** - params for using in [robocopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy). Default:  `/MIR /XD .git .svn __pycache* /XF *.log *.md /R:3 /W:3`
+- **-onBeforeZipCMD** - path to batch script that will be executed before packing temp folder into zip file
 ### Examples:
 #### 1. Default (use addon version in naming and addon folder name matches addon name)
 * Command:
@@ -78,6 +79,21 @@ BlenderAddonZip.exe -addonDir C:\GitHub\MyAddon\Src -copyParams "/MIR /XD .git .
 * Result:
 Folders: `.git`, `.svn`, `__pycache*`, `ico` and files `*.log`, `*.md`, `*.dll` are excluded
 > C:\GitHub\MyAddon\Build\MyAddon_1_0_0.zip
+#### 4. Change temp folder contents before packing into zip file
+Suppose that you want to change file content in temporary folder before it will be packed into zip folder. In this case you may create batch script and pass its path as parameter **-onBeforeZipCMD**.
+* Command:
+```posh
+BlenderAddonZip.exe -addonDir C:\blender\blender-addons\magic_uv -targetZipDir c:\addons\build -onBeforeZipCMD c:\Scripts\beforeZipCMD.script 
+```
+* Example: c:\Scripts\beforeZipCMD.script
+
+> First parameter in batch script is the path to temporary folder!
+```posh
+echo 'Before Zip %1'
+set _dir=%~1
+powershell -Command "(gc -Path '%_dir%/vlog.py') -replace 'ENABLE_DEBUG = True', 'ENABLE_DEBUG = False' | sc -Path '%_dir%/vlog.py'"
+```
+This command will replace text `ENABLE_DEBUG = True` by `ENABLE_DEBUG = False` in the file  `Path\To\AddonTempDir\vlog.py`
 
 ## Configure in VSCode as POST-BUILD task
 Expected: after hit build command `Shift+Ctrl+B`:

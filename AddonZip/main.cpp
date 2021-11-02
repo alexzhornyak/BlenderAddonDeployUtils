@@ -77,6 +77,7 @@ void ShowHelp(void) {
 	std::wcout << L"'targetZipName' - addon zip literal name or variable: " << g_s_LITERAL_AUTO_GENERATE.c_str()
 		<< L". Default: " << g_s_LITERAL_AUTO_GENERATE.c_str() << std::endl;
 	std::wcout << L"'copyParams' - params for using in robocopy. Default: " << g_s_LITERAL_COPY_PARAMS.c_str() << std::endl;
+	std::wcout << L"'onBeforeZipCMD' - path to batch script that will be executed before zipping temp folder" << std::endl;
 	std::wcout << L"------------------------------" << std::endl;
 }
 

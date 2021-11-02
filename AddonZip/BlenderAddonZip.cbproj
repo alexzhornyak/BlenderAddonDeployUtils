@@ -112,10 +112,10 @@
         <ILINK_LibraryPath>$(BDS)\lib\win32\release\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
-        <VerInfo_Build>5</VerInfo_Build>
+        <VerInfo_Build>6</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>None</Manifest_File>
-        <VerInfo_Keys>CompanyName=;FileDescription=Blender Addon Zip by Alex Zhornyak;FileVersion=1.0.0.5;InternalName=;LegalCopyright=Alex Zhornyak © 2021;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=Blender Addon Zip by Alex Zhornyak;FileVersion=1.0.0.6;InternalName=;LegalCopyright=Alex Zhornyak © 2021;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BCC_PCHName_Clang>mainPCH1.h</BCC_PCHName_Clang>
