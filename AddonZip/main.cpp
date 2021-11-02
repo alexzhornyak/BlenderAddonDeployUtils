@@ -87,6 +87,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		UnicodeString sTempDir = TPath::GetTempPath();
 		UnicodeString sTargetZipDir = L"";
 		UnicodeString sTargetZipName = L"";
+		UnicodeString sOnBeforeZipCMD = L"";
 
 		std::unique_ptr<TStringList>ACmdListPtr(new TStringList());
 		MUtils::ParseCommandLine(ACmdListPtr.get());
@@ -109,6 +110,9 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			}
 			else if (SameText(sName, L"copyParams")) {
 				g_s_LITERAL_COPY_PARAMS = ACmdListPtr->ValueFromIndex[i];
+			}
+			else if (SameText(sName, L"onBeforeZipCMD")) {
+				sOnBeforeZipCMD = ACmdListPtr->ValueFromIndex[i];
 			}
 			else if (sName == L"?" || sName == L"h" || sName == "help") {
 				ShowHelp();
@@ -149,6 +153,13 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				sAddonDir.c_str(), sTempTarget.c_str(), g_s_LITERAL_COPY_PARAMS.c_str() //
 				).c_str() //
 				);
+
+			if (!sOnBeforeZipCMD.IsEmpty()) {
+				_wsystem(UnicodeString().sprintf(L"call \"%s\" \"%s\"", //
+					sOnBeforeZipCMD.c_str(), sTempTarget.c_str() //
+					).c_str() //
+					);
+			}
 
 			const UnicodeString sTargetZipFile = TPath::Combine(sTargetZipDir, sTargetZipName);
 
